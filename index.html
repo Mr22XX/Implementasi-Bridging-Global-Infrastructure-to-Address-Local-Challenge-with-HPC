@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Interactive demo dashboard explaining how high-performance computing can help address local challenges.">
+  <title>HPC Local Impact | Compute for Communities</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#overview"><span class="brand-icon">H</span><span>compute<span class="brand-accent">.</span></span></a>
+      <p class="side-label">DASHBOARD</p>
+      <nav>
+        <a class="nav-link active" href="#overview"><span>▦</span> Overview</a>
+        <a class="nav-link" href="#challenges"><span>⌖</span> Local challenges</a>
+        <a class="nav-link" href="#simulator"><span>◴</span> HPC simulator</a>
+        <a class="nav-link" href="#workflow"><span>⇄</span> Workflow</a>
+      </nav>
+      <div class="sidebar-note">
+        <div class="note-icon">✳</div>
+        <strong>Compute with purpose</strong>
+        <p>Connecting powerful computing infrastructure to problems that matter locally.</p>
+      </div>
+      <div class="side-footer"><span class="pulse"></span> Educational demo <span class="version">v1.0</span></div>
+    </aside>
+
+    <main class="main" id="overview">
+      <header class="topbar">
+        <button class="menu-btn" id="menuToggle" aria-label="Open navigation">☰</button>
+        <div class="crumb">Projects <span>/</span> <strong>HPC Local Impact</strong></div>
+        <div class="top-right"><span class="demo-tag">SIMULATED DATA</span><button class="theme-btn" id="themeToggle" aria-label="Toggle dark mode">◐</button></div>
+      </header>
+
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">HIGH-PERFORMANCE COMPUTING · LOCAL IMPACT</p>
+          <h1>Big computing.<br><em>Local solutions.</em></h1>
+          <p class="hero-description">Explore how high-performance computing can turn complex datasets into useful insights for communities, researchers, and decision-makers.</p>
+          <a class="primary-btn" href="#simulator">Explore the simulator <span>↗</span></a>
+        </div>
+        <div class="hero-visual" aria-label="Illustration of a connected computing network">
+          <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+          <div class="node node-top">DATA</div><div class="node node-left">HPC</div><div class="node node-right">AI</div>
+          <div class="core"><div class="core-glyph">⌘</div><strong>Compute</strong><small>at scale</small></div>
+          <span class="spark spark-a">✦</span><span class="spark spark-b">·</span><span class="spark spark-c">✧</span>
+          <div class="visual-caption">GLOBAL INFRASTRUCTURE <span>→</span> LOCAL IMPACT</div>
+        </div>
+      </section>
+
+      <section class="metric-grid" aria-label="Illustrative HPC metrics">
+        <article class="metric-card"><div class="metric-label">Compute capacity <span class="metric-symbol purple">▤</span></div><strong>1,024 <small>cores</small></strong><p><span class="tiny-pill purple-pill">Parallel processing</span></p></article>
+        <article class="metric-card"><div class="metric-label">Scenario runtime <span class="metric-symbol green">◷</span></div><strong id="runtimeMetric">00:42 <small>min</small></strong><p><span class="tiny-pill green-pill">Illustrative estimate</span></p></article>
+        <article class="metric-card"><div class="metric-label">Data processed <span class="metric-symbol orange">▧</span></div><strong id="dataMetric">480 <small>GB</small></strong><p><span class="tiny-pill orange-pill">Sample workload</span></p></article>
+        <article class="metric-card"><div class="metric-label">Potential time saved <span class="metric-symbol blue">↗</span></div><strong id="savedMetric">91<small>%</small></strong><p><span class="tiny-pill blue-pill">Compared with baseline</span></p></article>
+      </section>
+
+      <section class="content-grid" id="challenges">
+        <article class="panel challenge-panel">
+          <div class="section-heading"><div><p class="eyebrow">FROM GLOBAL TO LOCAL</p><h2>Choose a local challenge</h2><p class="section-subtitle">Select a use case to explore a possible HPC application.</p></div><span class="section-index">01 / 03</span></div>
+          <div class="challenge-options" role="group" aria-label="Choose local challenge">
+            <button class="challenge-option selected" data-challenge="flood" aria-pressed="true"><span class="challenge-icon flood-icon">⌁</span><span><strong>Flood modelling</strong><small>Rainfall, terrain & river flow</small></span><span class="option-arrow">↗</span></button>
+            <button class="challenge-option" data-challenge="forest" aria-pressed="false"><span class="challenge-icon forest-icon">♧</span><span><strong>Forest monitoring</strong><small>Satellite imagery & land cover</small></span><span class="option-arrow">↗</span></button>
+            <button class="challenge-option" data-challenge="energy" aria-pressed="false"><span class="challenge-icon energy-icon">ϟ</span><span><strong>Energy planning</strong><small>Demand patterns & grid scenarios</small></span><span class="option-arrow">↗</span></button>
+          </div>
+          <div class="selected-challenge">
+            <div class="selected-top"><span class="selected-label">SELECTED APPLICATION</span><span class="status-badge"><i></i> Demo scenario</span></div>
+            <h3 id="challengeTitle">Flood risk simulation</h3>
+            <p id="challengeDescription">Process terrain, rainfall, and river-flow data to compare possible flood scenarios and help identify areas that may need further assessment.</p>
+            <div class="tag-row" id="challengeTags"><span>Geospatial data</span><span>Numerical modelling</span><span>Risk mapping</span></div>
+          </div>
+        </article>
+
+        <article class="panel chart-panel">
+          <div class="section-heading"><div><p class="eyebrow">COMPUTING AT SCALE</p><h2>Processing time comparison</h2><p class="section-subtitle">Illustrative runtime for the same workload.</p></div></div>
+          <div class="chart-legend"><span><i class="legend-dot grey-dot"></i>Standard workstation</span><span><i class="legend-dot purple-dot"></i>HPC cluster</span></div>
+          <div class="chart-wrap"><canvas id="runtimeChart" aria-label="Bar chart comparing illustrative processing times"></canvas></div>
+          <div class="chart-foot"><span class="info-dot">i</span> Actual performance depends on hardware, software, data size, and parallel efficiency.</div>
+        </article>
+      </section>
+
+      <section class="simulator-section" id="simulator">
+        <div class="section-heading simulator-heading"><div><p class="eyebrow">INTERACTIVE EXPLORATION</p><h2>HPC workload simulator</h2><p class="section-subtitle">Adjust the number of compute nodes to estimate a simplified runtime.</p></div><span class="section-index">02 / 03</span></div>
+        <div class="simulator-grid">
+          <article class="panel controls-panel">
+            <div class="control-top"><span>COMPUTE CONFIGURATION</span><span class="config-icon">⚙</span></div>
+            <label class="slider-label" for="nodeSlider"><span>Compute nodes</span><strong id="nodeValue">16 nodes</strong></label>
+            <input id="nodeSlider" type="range" min="1" max="64" step="1" value="16">
+            <div class="range-labels"><span>1 node</span><span>64 nodes</span></div>
+            <div class="config-divider"></div>
+            <div class="config-row"><span>Workload size</span><strong id="workloadLabel">Medium</strong></div>
+            <div class="config-row"><span>Parallel efficiency</span><strong id="efficiencyLabel">80%</strong></div>
+            <label class="workload-label" for="workloadSelect">Choose workload size</label>
+            <select id="workloadSelect"><option value="small">Small — 120 GB</option><option value="medium" selected>Medium — 480 GB</option><option value="large">Large — 1.2 TB</option></select>
+            <button class="run-btn" id="runSimulation"><span>▶</span> Run simulation</button>
+          </article>
+          <article class="panel result-panel">
+            <div class="result-heading"><div><span class="result-kicker">ESTIMATED COMPLETION TIME</span><h3 id="resultTime">00:42 <small>minutes</small></h3></div><span class="result-status" id="resultStatus">Ready to run</span></div>
+            <div class="result-track"><div class="result-progress" id="resultProgress"></div></div>
+            <div class="result-stats"><div><small>Nodes used</small><strong id="resultNodes">16</strong></div><div><small>Estimated speedup</small><strong id="speedup">7.2×</strong></div><div><small>Time reduction</small><strong id="timeReduction">86%</strong></div></div>
+            <div class="result-chart"><canvas id="scalingChart" aria-label="Line chart showing estimated runtime as node count increases"></canvas></div>
+            <p class="result-note"><span>ⓘ</span> This is a simplified educational model, not a benchmark of a real HPC system.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="workflow-section" id="workflow">
+        <div class="section-heading"><div><p class="eyebrow">THE PROCESS</p><h2>From infrastructure to impact</h2><p class="section-subtitle">A simplified workflow for applying HPC to local problems.</p></div><span class="section-index">03 / 03</span></div>
+        <div class="workflow-grid">
+          <article class="workflow-step"><span class="step-no">01</span><div class="workflow-icon">▤</div><h3>Collect data</h3><p>Gather local datasets such as satellite images, terrain, rainfall, or energy demand.</p><span class="step-tag">INPUT</span></article>
+          <div class="workflow-connector">→</div>
+          <article class="workflow-step"><span class="step-no">02</span><div class="workflow-icon">⌘</div><h3>Run computation</h3><p>Split complex workloads across multiple processors or compute nodes.</p><span class="step-tag">PROCESS</span></article>
+          <div class="workflow-connector">→</div>
+          <article class="workflow-step"><span class="step-no">03</span><div class="workflow-icon">▥</div><h3>Visualize results</h3><p>Present outputs in charts, maps, and scenario comparisons for interpretation.</p><span class="step-tag">OUTPUT</span></article>
+          <div class="workflow-connector">→</div>
+          <article class="workflow-step"><span class="step-no">04</span><div class="workflow-icon">◎</div><h3>Support decisions</h3><p>Help experts and local stakeholders assess options and plan next steps.</p><span class="step-tag">IMPACT</span></article>
+        </div>
+      </section>
+
+      <footer class="footer"><span>HPC Local Impact Dashboard · Learning project</span><span>Built to explore <strong>HPC × local challenges</strong></span></footer>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
